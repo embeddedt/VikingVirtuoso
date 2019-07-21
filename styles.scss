@@ -1,0 +1,170 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18-Jul-2019, 9:02:21 AM
+    Author     : trains
+*/
+
+$modal-backdrop-opacity: 0.7;
+
+@import "bootstrap";
+
+@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
+  @each $property in $properties {
+    #{$property}: $min-value;
+  }
+
+  @media (min-width: $min-vw) {
+    @each $property in $properties {
+      #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+    }
+  }
+
+  @media (min-width: $max-vw) {
+    @each $property in $properties {
+      #{$property}: $max-value;
+    }
+  }
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+$enable-shadows: true;
+
+$body-padding: 4px;
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    line-height: 1.1;
+    padding: $body-padding;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+body, html {
+    $body-dim: 100%;
+    max-width: $body-dim;
+    max-height: $body-dim;
+    width: $body-dim;
+    height: $body-dim;
+    min-width: $body-dim;
+    min-height: $body-dim;
+}
+
+figure {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+figure img {
+    
+}
+
+figcaption {
+    
+}
+
+#question-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex: none;
+}
+.option-buttons {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: inline-flex;
+    max-width: 100%;
+    flex: none;
+    transform: translateZ(0);
+    button {
+        @extend .btn;
+        @extend .btn-light;
+        @extend .shadow;
+        margin: 1rem 0.5rem;
+        padding: 0.375rem 0.75rem;
+        align-content: center;
+        min-width: 8em;
+        max-width: 5cm;
+        height: 5cm;
+        flex-basis: 100%;
+        figure {
+            margin: 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            div {
+                min-height: 0;
+                min-width: 0;
+                height: 1px;
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                margin: 4px 0;
+                flex: 1 1 auto;
+                position: relative;
+                img {
+                  object-fit: contain;
+                  object-position: 50% 50%;
+                  height: 100%;
+                  width: 100%;
+                  max-height: 100%;
+                  max-width: 100%;
+                  min-height: 0;
+                  min-width: 0;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+              }
+            }
+
+            figcaption {
+                display: table-caption;
+                caption-side: bottom;
+                white-space: normal;
+                flex: 0 0 0%;
+            }
+        }
+    }
+}
+
+
+
+.modal-body {
+    text-align: left;
+    line-height: 1.3;
+}
+.se-pre-con {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    z-index: 9999;
+    background: url(https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif) center no-repeat #fff;
+}
+
+#under-construction {
+    width: 100%;
+    object-fit: contain;
+    display: block;
+    min-height: 40px;
+    max-width: 400px;
+    flex: auto;
+}

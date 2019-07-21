@@ -1,0 +1,36 @@
+{
+    "name": "VikingVirtuoso",
+    "version": "1.0.0",
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
+    "author": "trains",
+    "contributors": [],
+    "dependencies": {
+        "@types/bootstrap": "^4.3.1",
+        "@types/jquery": "^3.3.30",
+        "@types/jqueryui": "^1.12.7",
+        "bootstrap": "4.3.1",
+        "jquery": "^3.4.1"
+    },
+    "scripts": {
+        "watch": "concurrently \"tsc --watch\" \"sass -I node_modules/bootstrap/scss --watch styles.scss built.css\" \"watchify -t [ babelify --presets [ @babel/preset-env ] ] code.js -o bundled.js -v\" \"live-server --no-browser --wait=2000 \"",
+        "build:ts": "tsc",
+        "build:js": "browserify -t [ babelify --presets [ @babel/preset-env ] ] code.js  | uglifyjs -mc > bundled.js",
+        "build:css": "sass -I node_modules/bootstrap/scss styles.scss built.css",
+        "build": "run-s build:*",
+        "start": "npm run watch"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.5.0",
+        "@babel/preset-env": "^7.5.2",
+        "@babel/preset-react": "^7.0.0",
+        "babel-core": "^6.26.3",
+        "babel-preset-env": "^1.7.0",
+        "babelify": "^10.0.0"
+    }
+}

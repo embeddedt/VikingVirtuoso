@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es5",
+    "noImplicitThis": false,
+    "noImplicitReturns": true,
+    "noEmitOnError": true,
+    "allowSyntheticDefaultImports": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "sourceRoot": "./"
+  }
+}
